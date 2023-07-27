@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Ubuntu", sans-serif;
+  background-color: rgb(238, 245, 255);
+}
+
+.main_container_shadow {
+  box-shadow: 0 20px 48px -24px #00000022;
+}
+
+.colors {
+  color: hsl(213, 96%, 18%);
+  color: hsl(243, 100%, 62%);
+  color: hsl(228, 100%, 84%);
+  color: hsl(206, 94%, 87%);
+  color: hsl(354, 84%, 57%);
+
+  color: hsl(231, 11%, 63%);
+  color: hsl(229, 24%, 87%);
+  color: hsl(217, 100%, 97%);
+  color: hsl(231, 100%, 99%);
+  color: hsl(0, 0%, 100%);
+
+  color: rgb(238, 245, 255);
+}
+
+@layer components {
+  .box_radius {
+    @apply rounded-xl;
+  }
+
+  .dark_blue_text {
+    color: hsl(213, 96%, 18%);
+  }
+
+  .dark_blue_bg {
+    background-color: hsl(213, 96%, 18%);
+  }
+
+  .dark_blue_border {
+    border-color: hsl(213, 96%, 18%);
+  }
+
+  .light_gray_text {
+    color: hsl(231, 11%, 63%);
+  }
+
+  .milky_cyan_bg {
+    background-color: hsl(206, 94%, 87%);
+  }
+
+  .milky_cyan_bg {
+    background-color: hsl(217, 100%, 97%);
+  }
+
+  .very_light_bg {
+    background-color: hsl(231, 100%, 99%);
+  }
+
+  .border_color {
+    @apply border-neutral-300;
+  }
+
+  .sidebar_bg {
+    @apply bg-[url('bg-sidebar-desktop.svg')];
+  }
+}
