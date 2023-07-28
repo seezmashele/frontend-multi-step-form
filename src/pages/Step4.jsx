@@ -37,84 +37,101 @@ const Step4 = () => {
   return (
     <>
       <Sidebar selectedIndex={3} />
-      <div className="w-full h-full flex justify-center">
-        <div className="w-full max-w-[28.5rem] flex flex-col">
-          <div className="w-full">
-            <h3 className="text-3xl text-[32px] mt-10 font-[700] dark_blue_text">
-              Finishing up
-            </h3>
-            <p className="text-base mt-2.5 font-[400] light_gray_text">
-              Double-check everything looks OK before confirming.
-            </p>
-            <div className="mt-9 p-6 flex flex-col gap-4 h-72f very_light_bg rounded-lg">
-              <div className="flex mb-3 items-center dark_blue_text font-[700]">
-                <div className="w-full flex flex-col">
-                  <h5>{`${plans[selectedPlanIndex]} ${
-                    monthlyBilling ? "(Monthly)" : "(Yearly)"
-                  }`}</h5>
-                  <div className="flex">
-                    <Link to="/step-2">
-                      <p className="underline font-[400] light_gray_text decoration-2">
-                        Change
-                      </p>
-                    </Link>
-                  </div>
-                </div>
-                <div className="">
-                  {monthlyBilling
-                    ? pricesMonthly[selectedPlanIndex]
-                    : pricesYearly[selectedPlanIndex]}
-                </div>
-              </div>
-              <div className="border-t w-full"></div>
-              <div className="light_gray_text flex gap-3 flex-col">
-                {addons.online && (
-                  <div className="flex items-center">
-                    <p className="w-full">Online service</p>
-                    <p className="dark_blue_text">{`+$1${
-                      monthlyBilling ? "/mo" : "0/yr"
-                    }`}</p>
-                  </div>
-                )}
-                {addons.storage && (
-                  <div className="flex items-center">
-                    <p className="w-full">Larger storage</p>
-                    <p className="dark_blue_text">{`+$2${
-                      monthlyBilling ? "/mo" : "0/yr"
-                    }`}</p>
-                  </div>
-                )}
-                {addons.customizable && (
-                  <div className="flex items-center">
-                    <p className="w-full">Customizable</p>
-                    <p className="dark_blue_text">{`+$2${
-                      monthlyBilling ? "/mo" : "0/yr"
-                    }`}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="flex items-center p-6">
-              <p className="w-full light_gray_text">{`Total (per ${
-                monthlyBilling ? "month" : "year"
-              })`}</p>
-              <p className="blue_text font-[700] text-xl">
-                {monthlyBilling ? getMonthlyTotal() : getYearlyTotal()}
+      <div className="content_wrapper">
+        <div className="content_container">
+          <div className="w-full max-w-[28.5rem] flex flex-col">
+            <div className="w-full">
+              <h3 className="text-3xl text-[32px] mt-10 font-[700] dark_blue_text">
+                Finishing up
+              </h3>
+              <p className="text-base mt-2.5 font-[400] light_gray_text">
+                Double-check everything looks OK before confirming.
               </p>
+              <div className="mt-9 p-6 flex flex-col gap-4 h-72f very_light_bg rounded-lg">
+                <div className="flex mb-3 items-center dark_blue_text font-[700]">
+                  <div className="w-full flex flex-col">
+                    <h5>{`${plans[selectedPlanIndex]} ${
+                      monthlyBilling ? "(Monthly)" : "(Yearly)"
+                    }`}</h5>
+                    <div className="flex">
+                      <Link to="/step-2">
+                        <p className="underline font-[400] light_gray_text decoration-2">
+                          Change
+                        </p>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="">
+                    {monthlyBilling
+                      ? pricesMonthly[selectedPlanIndex]
+                      : pricesYearly[selectedPlanIndex]}
+                  </div>
+                </div>
+                <div className="border-t w-full"></div>
+                <div className="light_gray_text flex gap-3 flex-col">
+                  {addons.online && (
+                    <div className="flex items-center">
+                      <p className="w-full">Online service</p>
+                      <p className="dark_blue_text">{`+$1${
+                        monthlyBilling ? "/mo" : "0/yr"
+                      }`}</p>
+                    </div>
+                  )}
+                  {addons.storage && (
+                    <div className="flex items-center">
+                      <p className="w-full">Larger storage</p>
+                      <p className="dark_blue_text">{`+$2${
+                        monthlyBilling ? "/mo" : "0/yr"
+                      }`}</p>
+                    </div>
+                  )}
+                  {addons.customizable && (
+                    <div className="flex items-center">
+                      <p className="w-full">Customizable</p>
+                      <p className="dark_blue_text">{`+$2${
+                        monthlyBilling ? "/mo" : "0/yr"
+                      }`}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center p-6">
+                <p className="w-full light_gray_text">{`Total (per ${
+                  monthlyBilling ? "month" : "year"
+                })`}</p>
+                <p className="blue_text font-[700] text-xl">
+                  {monthlyBilling ? getMonthlyTotal() : getYearlyTotal()}
+                </p>
+              </div>
+            </div>
+            <div className="md:flex hidden flex-grow items-end justify-between pt-6 pb-4 select-none">
+              <Link to="/step-3">
+                <button className="rounded-lg light_gray_text hover:bg-neutral-100 px-6 py-3 font-[500]">
+                  Go Back
+                </button>
+              </Link>
+              <Link to="/thank-you">
+                <button className="rounded-lg blue_bg text-white px-6 py-3 font-[500]">
+                  Confirm
+                </button>
+              </Link>
             </div>
           </div>
-          <div className="flex flex-grow items-end justify-between pt-6 pb-4 select-none">
-            <Link to="/step-3">
-              <button className="rounded-lg light_gray_text hover:bg-neutral-100 px-6 py-3 font-[500]">
-                Go Back
-              </button>
-            </Link>
-            <Link to="/thank-you">
-              <button className="rounded-lg blue_bg text-white px-6 py-3 font-[500]">
-                Confirm
-              </button>
-            </Link>
-          </div>
+        </div>
+      </div>
+
+      <div className="fixed w-full bottom-0 md:hidden">
+        <div className="flex w-full bg-white bottom_nav_shadow p-6 flex-grow items-end justify-between">
+          <Link to="/step-3">
+            <button className="rounded-lg light_gray_text hover:bg-neutral-100 px-6 py-3 font-[500]">
+              Go Back
+            </button>
+          </Link>
+          <Link to="/thank-you">
+            <button className="rounded-lg blue_bg text-white px-6 py-3 font-[500]">
+              Confirm
+            </button>
+          </Link>
         </div>
       </div>
     </>

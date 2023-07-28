@@ -9,20 +9,20 @@ const Sidebar = ({ selectedIndex = 0 }) => {
   ]
 
   return (
-    <div className="sidebar_bg w-[25rem] h-full bg-neutral-50 box_radius text-white text-sm">
-      <div className="px-6 py-8 gap-y-3 flex flex-col">
+    <div className="sidebar_bg md:w-[25rem] md:h-full md:box_radius text-white text-sm">
+      <div className="px-6 pb-28 pt-10 md:pb-8 my:pt-8 gap-y-3 gap-x-2 md:gap-x-2 justify-center md:justify-normal flex md:flex-col">
         {steps.map((item, index) => {
           return (
             <Link to={item.path} key={`sidebar-item${index}`}>
               <div className="flex items-center hover:bg-[#ffffff22] cursor-pointer py-2 px-2 box_radius select-none">
                 <div
-                  className={`w-8 h-8 rounded-full mr-4 border border-white flex items-center justify-center font-bold ${
+                  className={`w-10 h-10 md:w-8 md:h-8 rounded-full flex-shrink-0 md:mr-4 border border-white flex items-center justify-center font-bold ${
                     selectedIndex === index && "milky_cyan_bg text-black"
                   }`}
                 >
                   {index + 1}
                 </div>
-                <div className="uppercase">
+                <div className="uppercase hidden md:block">
                   <h4 className="text-xs opacity-60">Step {index + 1}</h4>
                   <h4 className="font-bold tracking-wider">{item.title}</h4>
                 </div>

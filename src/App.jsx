@@ -7,9 +7,9 @@ import ThankYou from "./pages/ThankYou"
 
 const App = () => {
   return (
-    <div className="w-full top-0 left-0 flex items-center justify-center min-h-screen px-6">
-      <div className="bg-white w-full shadow-xlf main_container_shadow max-w-[58.5rem] rounded-2xl min-h-[37rem] h-[37rem] p-4 my-16">
-        <div className="w-full h-full flex gap-4 select-none">
+    <div className="w-full top-0 md:pt-16 pb-16 left-0 flex items-center justify-center min-h-screen md:px-6">
+      <div className="md:bg-white w-full md:main_container_shadow max-w-[58.5rem] rounded-2xl min-h-[37rem] h-[37rem] md:p-4">
+        <div className="w-full h-full flex flex-col md:flex-row gap-4 select-none">
           <Routes>
             <Route path="/" element={<Step1 />} />
             <Route path="/step-2" element={<Step2 />} />
