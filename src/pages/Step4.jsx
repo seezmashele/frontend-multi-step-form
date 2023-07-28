@@ -2,62 +2,117 @@ import Sidebar from "../components/Sidebar"
 import { useFormData } from "../context/FormDataContext"
 import { Link } from "react-router-dom"
 
-const Step1 = () => {
-  const { useFormDataValues, changeName, changeEmail, changePhoneNumber } =
-    useFormData()
-  const { name, email, phoneNumber } = useFormDataValues()
+const Step4 = () => {
+  const { useFormDataValues } = useFormData()
+  const { monthlyBilling, selectedPlanIndex, addons } = useFormDataValues()
+
+  const plans = ["Arcade", "Advanced", "Pro"]
+  const pricesMonthly = ["$9/mo", "$12/mo", "$15/mo"]
+  const pricesYearly = ["$90/yr", "$120/yr", "$150/yr"]
+
+  const getMonthlyTotal = () => {
+    let total = 0
+    if (selectedPlanIndex === 0) total += 9
+    if (selectedPlanIndex === 1) total += 12
+    if (selectedPlanIndex === 2) total += 15
+    if (addons.online) total += 1
+    if (addons.storage) total += 2
+    if (addons.customizable) total += 2
+
+    return `$${total}/mo`
+  }
+
+  const getYearlyTotal = () => {
+    let total = 0
+    if (selectedPlanIndex === 0) total += 90
+    if (selectedPlanIndex === 1) total += 120
+    if (selectedPlanIndex === 2) total += 150
+    if (addons.online) total += 10
+    if (addons.storage) total += 20
+    if (addons.customizable) total += 20
+
+    return `$${total}/yr`
+  }
 
   return (
     <>
-      <Sidebar selectedIndex={4} />
+      <Sidebar selectedIndex={3} />
       <div className="w-full h-full flex justify-center">
         <div className="w-full max-w-[28.5rem] flex flex-col">
           <div className="w-full">
             <h3 className="text-3xl text-[32px] mt-10 font-[700] dark_blue_text">
-              Personal info
+              Finishing up
             </h3>
             <p className="text-base mt-2.5 font-[400] light_gray_text">
-              Please provide your name, email address, and phone number.
+              Double-check everything looks OK before confirming.
             </p>
-            <div className="mt-9">
-              <h5 className="pb-0.5 dark_blue_text font-[500] text-sm select-none">
-                Name
-              </h5>
-              <input
-                id="step-1-name"
-                value={name}
-                onChange={e => changeName(e.target.value)}
-                className="mt-1.5 border pt-2.5 pb-3 border-neutral-300 font-[500] px-4 rounded-lg w-full"
-                placeholder="e.g. Stephen King"
-              />
-              <h5 className="mt-5 pb-0.5 dark_blue_text font-[500] text-sm select-none">
-                Email Address
-              </h5>
-              <input
-                id="step-2-email"
-                value={email}
-                onChange={e => changeEmail(e.target.value)}
-                className="mt-1.5 border pt-2.5 pb-3 border-neutral-300 font-[500] px-4 rounded-lg w-full"
-                placeholder="e.g. stephenking@lorem.com"
-              />
-              <h5 className="mt-5 pb-0.5 dark_blue_text font-[500] text-sm select-none">
-                Phone Number
-              </h5>
-              <input
-                id="step-3-phone"
-                value={phoneNumber}
-                onChange={e => changePhoneNumber(e.target.value)}
-                className="mt-1.5 border pt-2.5 pb-3 border-neutral-300 font-[500] px-4 rounded-lg w-full"
-                placeholder="e.g. +1 234 567 890"
-              />
+            <div className="mt-9 p-6 flex flex-col gap-4 h-72f very_light_bg rounded-lg">
+              <div className="flex mb-3 items-center dark_blue_text font-[700]">
+                <div className="w-full flex flex-col">
+                  <h5>{`${plans[selectedPlanIndex]} ${
+                    monthlyBilling ? "(Monthly)" : "(Yearly)"
+                  }`}</h5>
+                  <div className="flex">
+                    <Link to="/step-2">
+                      <p className="underline font-[400] light_gray_text decoration-2">
+                        Change
+                      </p>
+                    </Link>
+                  </div>
+                </div>
+                <div className="">
+                  {monthlyBilling
+                    ? pricesMonthly[selectedPlanIndex]
+                    : pricesYearly[selectedPlanIndex]}
+                </div>
+              </div>
+              <div className="border-t w-full"></div>
+              <div className="light_gray_text flex gap-3 flex-col">
+                {addons.online && (
+                  <div className="flex items-center">
+                    <p className="w-full">Online service</p>
+                    <p className="dark_blue_text">{`+$1${
+                      monthlyBilling ? "/mo" : "0/yr"
+                    }`}</p>
+                  </div>
+                )}
+                {addons.storage && (
+                  <div className="flex items-center">
+                    <p className="w-full">Larger storage</p>
+                    <p className="dark_blue_text">{`+$2${
+                      monthlyBilling ? "/mo" : "0/yr"
+                    }`}</p>
+                  </div>
+                )}
+                {addons.customizable && (
+                  <div className="flex items-center">
+                    <p className="w-full">Customizable</p>
+                    <p className="dark_blue_text">{`+$2${
+                      monthlyBilling ? "/mo" : "0/yr"
+                    }`}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center p-6">
+              <p className="w-full light_gray_text">{`Total (per ${
+                monthlyBilling ? "month" : "year"
+              })`}</p>
+              <p className="blue_text font-[700] text-xl">
+                {monthlyBilling ? getMonthlyTotal() : getYearlyTotal()}
+              </p>
             </div>
           </div>
-          <div className="flex-grow flex items-end justify-end pt-6 pb-4">
-            <Link
-              to="/step-2"
-              className="rounded-lg dark_blue_bg text-white px-6 py-3 font-[500]"
-            >
-              Next Step
+          <div className="flex flex-grow items-end justify-between pt-6 pb-4 select-none">
+            <Link to="/step-3">
+              <button className="rounded-lg light_gray_text hover:bg-neutral-100 px-6 py-3 font-[500]">
+                Go Back
+              </button>
+            </Link>
+            <Link to="/thank-you">
+              <button className="rounded-lg blue_bg text-white px-6 py-3 font-[500]">
+                Confirm
+              </button>
             </Link>
           </div>
         </div>
@@ -66,4 +121,4 @@ const Step1 = () => {
   )
 }
 
-export default Step1
+export default Step4

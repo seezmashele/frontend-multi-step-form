@@ -2,7 +2,7 @@ import Sidebar from "../components/Sidebar"
 import { useFormData } from "../context/FormDataContext"
 import { Link } from "react-router-dom"
 
-const Step1 = () => {
+const Step2 = () => {
   const { useFormDataValues, changeMonthlyBilling, changeSelectedPlanIndex } =
     useFormData()
   const { monthlyBilling, selectedPlanIndex } = useFormDataValues()
@@ -46,7 +46,7 @@ const Step1 = () => {
                   <button
                     type="button"
                     key={`plans${index}`}
-                    className={`border cursor-pointer select-none hover:dark_blue_border box_radius w-1/4 flex-grow flex flex-col px-4 pt-5 pb-4 ${
+                    className={`border transition-all duration-100 cursor-pointer select-none hover:dark_blue_border rounded-lg w-1/4 flex-grow flex flex-col px-4 pt-5 pb-4 ${
                       index === selectedPlanIndex
                         ? "dark_blue_border bg-slate-100"
                         : "border_color"
@@ -88,13 +88,21 @@ const Step1 = () => {
                 >
                   Monthly
                 </button>
-                <div
-                  className={`flex dark_blue_bg rounded-full h-5 w-9 p-1 mx-2 ${
-                    !monthlyBilling && "justify-end"
-                  }`}
+                <button
+                  type="button"
+                  className="w-12f p-2 box_radius hover:bg-slate-100 cursor-pointer"
+                  onClick={() => {
+                    changeMonthlyBilling(!monthlyBilling)
+                  }}
                 >
-                  <div className="w-3 h-3 bg-white rounded-full"></div>
-                </div>
+                  <div className="flex dark_blue_bg rounded-full h-5 w-9 p-1">
+                    <div
+                      className={`w-3 h-3 bg-white rounded-full transition-all duration-300 ${
+                        !monthlyBilling && "translate-x-4"
+                      }`}
+                    ></div>
+                  </div>
+                </button>
                 <button
                   type="button"
                   onClick={() => {
@@ -127,4 +135,4 @@ const Step1 = () => {
   )
 }
 
-export default Step1
+export default Step2

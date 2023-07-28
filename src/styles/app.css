@@ -45,6 +45,14 @@
     border-color: hsl(213, 96%, 18%);
   }
 
+  .blue_text {
+    color: hsl(243, 100%, 62%);
+  }
+
+  .blue_bg {
+    background-color: hsl(243, 100%, 62%);
+  }
+
   .light_gray_text {
     color: hsl(231, 11%, 63%);
   }
@@ -53,8 +61,12 @@
     background-color: hsl(206, 94%, 87%);
   }
 
-  .milky_cyan_bg {
+  .light_cyan_bg {
     background-color: hsl(217, 100%, 97%);
+  }
+
+  .light_gray_bg {
+    background-color: hsl(229, 24%, 87%);
   }
 
   .very_light_bg {

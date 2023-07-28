@@ -12,11 +12,11 @@ export const FormDataProvider = ({ children }) => {
   const [phoneNumber, setPhoneNumber] = useState("")
   const [selectedPlanIndex, setSelectedPlanIndex] = useState(0)
   const [monthlyBilling, setMonthlyBilling] = useState(true)
-  const [selectedAddons, setSelectedAddons] = useState([
-    { selected: false },
-    { selected: false },
-    { selected: false }
-  ])
+  const [addons, setAddons] = useState({
+    online: false,
+    storage: false,
+    customizable: false
+  })
 
   const useFormDataValues = () => {
     return {
@@ -25,7 +25,7 @@ export const FormDataProvider = ({ children }) => {
       phoneNumber,
       selectedPlanIndex,
       monthlyBilling,
-      selectedAddons
+      addons
     }
   }
 
@@ -34,7 +34,7 @@ export const FormDataProvider = ({ children }) => {
   const changePhoneNumber = value => setPhoneNumber(value)
   const changeSelectedPlanIndex = value => setSelectedPlanIndex(value)
   const changeMonthlyBilling = value => setMonthlyBilling(value)
-  const changeSelectedAddons = value => setSelectedAddons(value)
+  const changeAddons = value => setAddons(value)
 
   return (
     <FormDataContext.Provider
@@ -45,7 +45,7 @@ export const FormDataProvider = ({ children }) => {
         changePhoneNumber,
         changeSelectedPlanIndex,
         changeMonthlyBilling,
-        changeSelectedAddons
+        changeAddons
       }}
     >
       {children}
