@@ -90,6 +90,6 @@
   }
 
   .sidebar_bg {
-    @apply bg-[url('bg-sidebar-mobile.svg')] md:bg-[url('bg-sidebar-desktop.svg')] bg-cover;
+    @apply bg-[url('../assets/bg-sidebar-mobile.svg')] md:bg-[url('../assets/bg-sidebar-desktop.svg')] bg-cover;
   }
 }

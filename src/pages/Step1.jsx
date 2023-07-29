@@ -101,7 +101,6 @@ const Step1 = () => {
                 <input
                   id="step-2-email"
                   value={email}
-                  pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
                   onChange={e => handleEmailChange(e.target.value)}
                   className={`mt-1.5 border pt-2.5 pb-3  font-[500] px-4 rounded-lg w-full ${
                     emailError ? "border-red-500" : "border-neutral-300"
